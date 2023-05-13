@@ -15,7 +15,7 @@ COPY . .
 
 # Drugi etap
 
-# Uzycie obrazu alpine
+# Obraz alpine
 FROM alpine:latest
 
 # Instalacja nodejs, curl oraz usunięcie pamięci podręcznej pakietów
@@ -29,10 +29,10 @@ WORKDIR /tch_zad1
 # Skopiowanie plików z etapu pierwszego
 COPY --from=etapPierwszy /tch_zad1 /tch_zad1
 
-# Deklaracja portu aplikacji w kontenerze 
+# Port, na którym nasłuchuje aplikacja
 EXPOSE 8085
 
-# Monitorowanie dostepnosci serwera 
+# Healthckeck
 HEALTHCHECK --interval=30s --timeout=10s \
   CMD curl -f http://localhost:8085/ || exit 1
 
